@@ -1,0 +1,6 @@
+{
+    "files.autoSave": "afterDelay",
+    "grunt.autoDetect": "on",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
+}
