@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "/usr/include/x86_64-linux-gnu/c++/11"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang-14",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
+        },
+        {
+            "name": "linux_mint",
+            "includePath": [
+                "${default}"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang-14",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
