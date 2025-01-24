@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=GitKraken
+Exec=/home/user/gitkraken/gitkraken  ; Замените путь на свой
+Icon=/home/user/gitkraken/gitkraken.png ; Замените путь на свой (если есть иконка)
+Terminal=false
+Categories=Development;IDE;
