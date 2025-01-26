@@ -4,10 +4,10 @@
 #include <functional>
 
 
-template <typename State, typename Event>
-class StateMachine {
+template <typename State, typename Event>class StateMachine 
+{
 public:
-  using TransitionFunction = std::function<State(State)>;
+  using TrnsitionFunction = std::function<State(State)>;
 
   using TransitionTable = std::map<std::pair<State, Event>, TransitionFunction>;
   StateMachine(State initialState) : currentState(initialState) {}
@@ -31,7 +31,8 @@ public:
 protected:
   State currentState;
   TransitionTable transitionTable;
-};
+
+};//End of template <typename State, typename Event>class StateMachine 
 
 
 enum class PlayerState {
