@@ -132,6 +132,12 @@ public:
     const std::vector<Any>& getStorage() const;
 };
 
+std::vector<Any> Serializator::deserialize(const Buffer& _val)
+{
+    std::vector<Any> result;
+
+    return result;    
+}
 
 int main() {
 
@@ -149,9 +155,9 @@ int main() {
     raw.read(reinterpret_cast<char*>(buff.data()), size);
 
     std::cout << "Buffer size:" << buff.size() << std::endl;
-/*
-    auto res = Serializator::deserialize(buff);
 
+    auto res = Serializator::deserialize(buff);
+/*
     Serializator s;
     for (auto&& i : res)
         s.push(i);
