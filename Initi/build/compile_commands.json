@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/andy/MyVsCode/Initi/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/Main.dir/main.cpp.o -c /home/andy/MyVsCode/Initi/main.cpp",
+  "file": "/home/andy/MyVsCode/Initi/main.cpp"
+}
+]

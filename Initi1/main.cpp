@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <cstring>
+#include <algorithm>
 
 using Id = uint64_t;
 using Buffer = std::vector<std::byte>;
@@ -30,6 +31,22 @@ public:
     const std::vector<std::byte>& getStorage() const;
 };
 
+const std::vector<std::byte>& Serializator::getStorage() const
+{
+    return buf;
+}
+
+Buffer Serializator::serialize() const
+{
+    return buf;
+}
+
+template<typename Arg> void Serializator::push(Arg&& _val)
+{
+    buf.push_back(_val);
+}
+
+
 std::vector<std::byte> Serializator::deserialize(const Buffer& _val)
 {
     std::vector<std::byte> result;
@@ -45,6 +62,9 @@ std::vector<std::byte> Serializator::deserialize(const Buffer& _val)
     return result;    
 }
 
+//=================================
+// Главная программа
+//=================================
 int main() {
 
     std::cout << "Open file:" << "raw.bin" << std::endl;
@@ -63,11 +83,11 @@ int main() {
     std::cout << "Buffer size:" << buff.size() << std::endl;
 
     auto res = Serializator::deserialize(buff);
-/*
+
     Serializator s;
     for (auto&& i : res) s.push(i);
 
     std::cout << (buff == s.serialize()) << '\n';
-*/
+
     return 0;
 }

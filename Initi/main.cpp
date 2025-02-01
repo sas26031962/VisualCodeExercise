@@ -78,7 +78,11 @@ public:
     template<typename ...Args>
     IntegerType(Args&& ...);
 };
+<<<<<<< Updated upstream
 
+=======
+/*
+>>>>>>> Stashed changes
 class FloatType {
 public:
     template<typename ...Args>
@@ -132,9 +136,16 @@ public:
     const std::vector<Any>& getStorage() const;
 };
 
+<<<<<<< Updated upstream
 
 int main() {
 
+=======
+*/
+int main() {
+
+
+>>>>>>> Stashed changes
     std::ifstream raw;
     raw.open("raw.bin", std::ios_base::in | std::ios_base::binary);
     if (!raw.is_open())
@@ -142,7 +153,11 @@ int main() {
     raw.seekg(0, std::ios_base::end);
     std::streamsize size = raw.tellg();
     raw.seekg(0, std::ios_base::beg);
+<<<<<<< Updated upstream
 
+=======
+/*
+>>>>>>> Stashed changes
     Buffer buff(size);
     raw.read(reinterpret_cast<char*>(buff.data()), size);
 
@@ -153,6 +168,10 @@ int main() {
         s.push(i);
 
     std::cout << (buff == s.serialize()) << '\n';
+<<<<<<< Updated upstream
 
+=======
+*/
+>>>>>>> Stashed changes
     return 0;
 }
