@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstring>
 #include <algorithm>
+#include <memory>
 
 using Id = uint64_t;
 using Buffer = std::vector<std::byte>;
@@ -51,21 +52,22 @@ std::vector<std::byte> Serializator::deserialize(const Buffer& _val)
 {
     std::vector<std::byte> result;
     result.clear();
-    std::byte * x = new std::byte;
+
+    std::unique_ptr<std::byte> x(new std::byte);
     for(size_t i = 0; i < _val.size(); i++)
     {
-        std::memcpy(&x, &_val.at(i), sizeof(std::byte));
+        *x = static_cast<std::byte>(_val.at(i));
         result.push_back(*x);
-    }
-    delete x;
-
+     }
+ 
     return result;    
 }
 
 //=================================
 // Главная программа
 //=================================
-int main() {
+int main() 
+{
 
     std::cout << "Open file:" << "raw.bin" << std::endl;
     
