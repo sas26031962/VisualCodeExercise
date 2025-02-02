@@ -54,12 +54,13 @@ std::vector<std::byte> Serializator::deserialize(const Buffer& _val)
     result.clear();
 
     std::unique_ptr<std::byte> x(new std::byte);
-    for(size_t i = 0; i < _val.size(); i++)
+
+    for (std::byte b : _val) 
     {
-        *x = static_cast<std::byte>(_val.at(i));
+        *x = static_cast<std::byte>(b);
         result.push_back(*x);
-     }
- 
+    }
+
     return result;    
 }
 
