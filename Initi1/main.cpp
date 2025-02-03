@@ -4,6 +4,7 @@
 #include <cstring>
 #include <algorithm>
 #include <memory>
+#include <charconv>
 
 using Id = uint64_t;
 using Buffer = std::vector<std::byte>;
@@ -20,9 +21,19 @@ enum class TypeId : Id {
 //=================================
 class Serializator 
 {
+    std::array<char, 10> res;
+
     Buffer buf;//Область данных
 public:
+    //Конструктор
+    Serializator();
+
+    //Деструктор
+    ~Serializator();
+
     //Методы
+    std::array<char, 10> charToString(int x);
+    
     template<typename Arg> void push(Arg&& _val);
 
     Buffer serialize() const;
@@ -32,6 +43,16 @@ public:
     const std::vector<std::byte>& getStorage() const;
 };
 
+Serializator::Serializator()
+{
+    //...    
+}
+
+Serializator::~Serializator()
+{
+    //...    
+}
+
 const std::vector<std::byte>& Serializator::getStorage() const
 {
     return buf;
@@ -39,7 +60,31 @@ const std::vector<std::byte>& Serializator::getStorage() const
 
 Buffer Serializator::serialize() const
 {
+    int iStringPosition = 0;
+    int iRowNumber = 0;
+    const int iStringWwidth = 16;
+    std::string sLine = "";
+    for(std::byte f : buf)
+    {
+        //std::byte l;// = 0;
+        //charToString(l);
+        sLine.append("55: ");
+        iStringPosition++;
+        if(iStringPosition == iStringWwidth)  
+        {
+            std::cout << sLine << std::endl;
+            iStringPosition = 0;
+            sLine.clear();
+        }
+    }
+
     return buf;
+}
+
+std::array<char, 10> Serializator::charToString(int x)
+{
+    std::to_chars(res.begin(), res.end(), x, 16);
+    return res;
 }
 
 template<typename Arg> void Serializator::push(Arg&& _val)
