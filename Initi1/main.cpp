@@ -2,13 +2,9 @@
 #include <vector>
 #include <fstream>
 #include <cstring>
-<<<<<<< HEAD
 #include <algorithm>
 #include <memory>
 #include <charconv>
-=======
-#include <any>
->>>>>>> sas26031962/main
 
 using Id = uint64_t;
 using Buffer = std::vector<std::byte>;
@@ -21,7 +17,6 @@ enum class TypeId : Id {
 };
 //===================================================
 // Класс Serializator
-<<<<<<< HEAD
 //=================================
 class Serializator 
 {
@@ -38,23 +33,15 @@ public:
     //Методы
     std::array<char, 10> charToString(int x);
     
-=======
-//===================================================
-class Serializator {
-public:
->>>>>>> sas26031962/main
     template<typename Arg> void push(Arg&& _val);
 
     Buffer serialize() const;
-
-    Buffer buf;
 
     static std::vector<std::byte> deserialize(const Buffer& _val);
 
     const std::vector<std::byte>& getStorage() const;
 };
 
-<<<<<<< HEAD
 Serializator::Serializator()
 {
     //...    
@@ -99,8 +86,6 @@ std::array<char, 10> Serializator::charToString(int x)
     return res;
 }
 
-=======
->>>>>>> sas26031962/main
 template<typename Arg> void Serializator::push(Arg&& _val)
 {
     buf.push_back(_val);
@@ -123,10 +108,6 @@ std::vector<std::byte> Serializator::deserialize(const Buffer& _val)
 
     //std::copy(_val.begin(), _val.end(), result->begin());
     return result;    
-}
-Buffer Serializator::serialize() const
-{
-    return buf;
 }
 
 //===================================================
