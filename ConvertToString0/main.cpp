@@ -3,12 +3,22 @@
 #include <array>
 
 int main() {
+    // Число для преобразования
     int number = 128;//255;
-    std::array<char, 10> buffer; // Массив для хранения строки
+    // Массив для хранения строки
+    std::array<char, 10> buffer; 
+    // Выполнение преобразования
     auto result = std::to_chars(buffer.begin(), buffer.end(), number, 16); //Основание 16
-    if (result.ec == std::errc()) {
+    // Вывод результата и обработка ошибок
+    if (result.ec == std::errc()) 
+    {
+        //Результат преобразуется в строку из буфера
+        // buffer.begin() - указатель на начало буфера
+        // result.ptr  - указатель на первый свободный элемент в буфере после записи
         std::cout << "Converted string (hex): " << std::string(buffer.begin(), result.ptr) << std::endl;
-    }else {
+    }
+    else 
+    {
       std::cerr << "Error: not enough space." << std::endl;
     }
 
