@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++", // или /usr/bin/clang++
+            "cStandard": "c17",
+            "cppStandard": "c++20", // Указываем стандарт C++20
+            "intelliSenseMode": "gcc-x64" // или clang-x64
+        }
+    ],
+    "version": 4
+}
