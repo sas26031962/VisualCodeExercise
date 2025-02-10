@@ -6,18 +6,10 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            //"cStandard": "c17",
-            "cStandard": "c20",
-            "intelliSenseMode": "linux-clang-x64"
-        },
-        {
-            "name": "Linux configuration for c++",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [],
+            "compilerPath": "/usr/bin/g++", // или /usr/bin/clang++
             "cStandard": "c17",
-            "intelliSenseMode": "linux-clang-x64"
+            "cppStandard": "c++20", // Указываем стандарт C++20
+            "intelliSenseMode": "gcc-x64" // или clang-x64
         }
     ],
     "version": 4
