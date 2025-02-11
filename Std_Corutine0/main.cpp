@@ -1,60 +1,43 @@
-#include <iostream>
 #include <coroutine>
-#include <exception>
+#include <iostream>
 
-// Обещание для нашей корутины
 struct NumberGenerator {
     struct promise_type {
         int current_value;
-
-        std::suspend_always initial_suspend() { return {}; }
-        std::suspend_always final_suspend() noexcept { return {}; }
-        NumberGenerator get_return_object() { return NumberGenerator{this}; }
+        auto get_return_object() { return NumberGenerator{this}; }
+        auto initial_suspend() { return std::suspend_always{}; }
+        auto final_suspend() noexcept { return std::suspend_always{}; }
         void unhandled_exception() { std::terminate(); }
-
-        std::suspend_always yield_value(int value) {
+        auto yield_value(int value) {
             current_value = value;
-            return {};
+            return std::suspend_always{};
         }
-
         void return_void() {}
     };
 
-    promise_type* promise;
+    using handle_type = std::coroutine_handle<promise_type>;
+    handle_type coro_handle;
 
-    NumberGenerator(promise_type* p) : promise(p) {}
-
-    int get_next() {
-        return promise->current_value;
+    explicit NumberGenerator(promise_type* p)
+        : coro_handle(handle_type::from_promise(*p)) {}
+    ~NumberGenerator() {
+        if (coro_handle) coro_handle.destroy();
     }
-
-    bool next() {
-        if (coroutine_handle_) {
-            coroutine_handle_.resume();
-            return !coroutine_handle_.done();
-        }
-        return false;
+    int next() {
+        coro_handle.resume();
+        return coro_handle.promise().current_value;
     }
-
-private:
-    using coroutine_handle = std::coroutine_handle<promise_type>;
-    coroutine_handle coroutine_handle_ = coroutine_handle::from_promise(promise);
-
 };
 
-NumberGenerator generate_numbers(int start, int end) {
-    for (int i = start; i <= end; ++i) {
+NumberGenerator generateNumbers() {
+    for (int i = 0; i < 5; ++i) {
         co_yield i;
     }
 }
 
 int main() {
-    NumberGenerator generator = generate_numbers(1, 5);
-
-    while (generator.next()) {
-        std::cout << generator.get_next() << " "; // Вывод: 1 2 3 4 5
+    auto gen = generateNumbers();
+    for (int i = 0; i < 5; ++i) {
+        std::cout << gen.next() << std::endl;
     }
-    std::cout << std::endl;
-
-    return 0;
 }
